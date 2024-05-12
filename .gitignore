@@ -1,24 +1,45 @@
-# Compiled class file
-*.class
+# Ignora i file generati da Maven
+target/
+*.iml
+mvnw
+mvnw.cmd
+.mvn/
 
-# Log file
+# Ignora i file generati da Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# Ignora i file generati da Visual Studio Code
+.vscode/
+
+# Ignora i file di configurazione specifici di Eclipse
+*.launch
+*.swp
+
+# Ignora i file di log
 *.log
 
-# BlueJ files
-*.ctxt
+# Ignora i file di configurazione di Spring Boot
+#application.properties
+#application.yml
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
+# Ignora i file generati dalla compilazione
+*.class
 *.jar
 *.war
-*.nar
 *.ear
+*.nar
 *.zip
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
+# Ignora i file di backup
+*~
+
+# Ignora i file di storage temporanei
+tmp/
+
+# Ignora gitkeep
+.gitkeep
