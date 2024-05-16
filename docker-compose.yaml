@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  db:
+    build:
+      context: ./fiscalcodetool_DB
+    container_name: fiscalcodetool-db
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: FiscalCodeTool
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "FiscalCodeTool", "-U", "service_user"]
+      interval: 30s
+      retries: 5
+      start_period: 120s
+      timeout: 5s
+
+  app:
+    build:
+      context: ./fiscalcodetool
+    container_name: fiscalcodetool-app
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/FiscalCodeTool
+      SPRING_DATASOURCE_USERNAME: service_user
+      SPRING_DATASOURCE_PASSWORD: service
