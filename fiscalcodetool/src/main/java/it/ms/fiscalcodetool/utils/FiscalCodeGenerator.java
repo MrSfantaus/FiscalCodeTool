@@ -8,7 +8,10 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import it.ms.fiscalcodetool.exceptions.FiscalCodeException;
+import it.ms.fiscalcodetool.models.entities.BelfioreEntity;
 import it.ms.fiscalcodetool.models.request.GenerateRequest;
+import it.ms.fiscalcodetool.repositories.FiscalCodeToolRepository;
 import lombok.Data;
 
 @Data
@@ -16,13 +19,14 @@ import lombok.Data;
 public class FiscalCodeGenerator {
 
 	@Autowired
-	Utility utility;
+	FiscalCodeToolRepository repository;
 
 	private String fiscalCode = null;
 	private List<String> homocodianFiscalCodes = null;
 	private String error = null;
 
 	public boolean generateFiscalCode(GenerateRequest request) {
+		resetValues();
 		StringBuilder cf = new StringBuilder("");
 		try {
 			cf.append(modifyNameOrSurname(request.getSurname(), false));
@@ -30,7 +34,7 @@ public class FiscalCodeGenerator {
 			cf.append(evaluateYear(request.getBirthDate()));
 			cf.append(evaluateMonth(request.getBirthDate()));
 			cf.append(evaluateDay(request.getBirthDate(), request.getGender()));
-			cf.append(evaluateMunicipalityCode(request.getItaly(), request.getProvince(), request.getMunicipal()));
+			cf.append(evaluateMunicipalityCode(request.getProvince(), request.getMunicipal()));
 			cf.append(evaluateControlCode(cf.toString()));
 
 			setFiscalCode(cf.toString().toUpperCase());
@@ -171,19 +175,17 @@ public class FiscalCodeGenerator {
 		return string;
 	}
 
-	private String evaluateMunicipalityCode(String italy, String province, String municipality) {
+	private String evaluateMunicipalityCode(String province, String municipality) throws FiscalCodeException {
 		String municipalityCode = "";
-		Map<String, Map<String, Map<String, String>>> codBelfioreMap = utility.getCodBelfioreMap();
+		BelfioreEntity entity = repository.findByProvinceAndMunicipality(province.toUpperCase(), municipality.toUpperCase());
 
-		if (codBelfioreMap.containsKey(italy.toUpperCase().trim())) {
-			Map<String, Map<String, String>> stateMap = codBelfioreMap.get(italy.trim());
-			if (stateMap.containsKey(province.toUpperCase().trim())) {
-				Map<String, String> provinceMap = stateMap.get(province);
-				if (provinceMap.containsKey(municipality.toUpperCase().trim())) {
-					municipalityCode = provinceMap.get(municipality.toUpperCase().trim());
-				}
-			}
+		if ( entity == null || entity.getBelfioreCode() == null) {
+			setError("Match for " + province + " - " + municipality + " not found.");
+			throw new FiscalCodeException(error);
+		} else {
+			municipalityCode = entity.getBelfioreCode().trim().toUpperCase();
 		}
+
 		return municipalityCode;
 	}
 
@@ -198,6 +200,12 @@ public class FiscalCodeGenerator {
 		int control = (odds + even) % 26;
 
 		return Constants.CONTROL_CHAR_ARRAY[control];
+	}
+
+	private void resetValues() {
+		fiscalCode = null;
+		homocodianFiscalCodes = null;
+		error = null;
 	}
 
 }
