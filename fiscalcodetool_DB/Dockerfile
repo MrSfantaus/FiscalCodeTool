@@ -11,8 +11,11 @@ ENV SERVICE_PASSWORD=service
 ENV POSTGRES_DB=FiscalCodeTool
 
 # Copia uno script SQL per creare l'utente di servizio e concedergli i privilegi necessari
-COPY init.sql /docker-entrypoint-initdb.d/
+COPY INIT.sql /docker-entrypoint-initdb.d/
+COPY INSERT_INTO_BELFIORE_CODES.sql /docker-entrypoint-initdb.d/
 
 # Imposta le autorizzazioni dello script SQL
-RUN chown postgres:postgres /docker-entrypoint-initdb.d/init.sql
-RUN chmod 755 /docker-entrypoint-initdb.d/init.sql
+RUN chown postgres:postgres /docker-entrypoint-initdb.d/INIT.sql
+RUN chmod 755 /docker-entrypoint-initdb.d/INIT.sql
+RUN chown postgres:postgres /docker-entrypoint-initdb.d/INSERT_INTO_BELFIORE_CODES.sql
+RUN chmod 755 /docker-entrypoint-initdb.d/INSERT_INTO_BELFIORE_CODES.sql
