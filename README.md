@@ -16,16 +16,16 @@ Homographic cases, also known as "omocodia" in Italian, refer to situations wher
 ## Technologies Used
  - Backend: Java Spring Boot framework for robust and scalable server-side development.
  - Frontend: Angular framework for building dynamic and responsive user interfaces.
- - Database: [Optional] Integration with a relational database (e.g., PostgreSQL, MySQL) for storing user data and configurations.
+ - Database: Integration with a relational database (e.g., PostgreSQL, MySQL) for storing user data and configurations.
  - APIs: Utilize third-party APIs for additional functionalities such as geolocation for place of birth detection.
 
 ## Getting Started
 To run FiscalCodeTool locally, follow these steps:
 
-1. Clone the Repository: git clone https://github.com/MrSfantaus/FiscalCodeTool.git
-2. Navigate to Backend Directory: cd FiscalCodeTool/backend
-3. Run Backend Server: ./mvnw spring-boot:run
-4. Navigate to Frontend Directory: cd ../frontend
+1. Clone the Repository: `git clone https://github.com/MrSfantaus/FiscalCodeTool.git`
+2. Navigate to Backend Directory: `cd FiscalCodeTool/backend`
+3. Run Backend Server: `docker-compose up --build`
+4. Navigate to Frontend Directory: `cd ../frontend`
 5. Install Dependencies: npm install
 6. Run Frontend Server: ng serve
 7. Access the Application: Open your web browser and go to http://localhost:4200
