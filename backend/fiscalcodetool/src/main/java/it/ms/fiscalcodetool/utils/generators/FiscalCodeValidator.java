@@ -1,8 +1,9 @@
-package it.ms.fiscalcodetool.utils;
+package it.ms.fiscalcodetool.utils.generators;
 
 import org.springframework.stereotype.Component;
 
 import it.ms.fiscalcodetool.exceptions.FiscalCodeException;
+import it.ms.fiscalcodetool.utils.Constants;
 import lombok.Data;
 
 @Data

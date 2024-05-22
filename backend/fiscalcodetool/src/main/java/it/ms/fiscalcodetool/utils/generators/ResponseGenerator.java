@@ -1,9 +1,10 @@
-package it.ms.fiscalcodetool.utils;
+package it.ms.fiscalcodetool.utils.generators;
 
 import org.springframework.stereotype.Component;
 
 import it.ms.fiscalcodetool.models.dto.JsonDTO;
 import it.ms.fiscalcodetool.models.response.Response;
+import it.ms.fiscalcodetool.utils.Constants;
 
 @Component
 public class ResponseGenerator {

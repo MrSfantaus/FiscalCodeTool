@@ -1,4 +1,4 @@
-package it.ms.fiscalcodetool.utils;
+package it.ms.fiscalcodetool.utils.generators;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,6 +12,7 @@ import it.ms.fiscalcodetool.exceptions.FiscalCodeException;
 import it.ms.fiscalcodetool.models.entities.BelfioreEntity;
 import it.ms.fiscalcodetool.models.request.GenerateRequest;
 import it.ms.fiscalcodetool.repositories.FiscalCodeToolRepository;
+import it.ms.fiscalcodetool.utils.Constants;
 import lombok.Data;
 
 @Data

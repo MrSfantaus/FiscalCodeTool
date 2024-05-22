@@ -9,13 +9,13 @@ public class Constants {
     public static final String KO  = "KO";
     public static final String PATH_FILE = "files/COD_BELFIORE.json";
 
-    protected static final String FISCALCODE_REGEX = "^(?:[A-Z][AEIOU][AEIOUX]|[AEIOU]X{2}|[B-DF-HJ-NP-TV-Z]{2}[A-Z]){2}(?:[\\dLMNP-V]{2}(?:[A-EHLMPR-T](?:[04LQ][1-9MNP-V]|[15MR][\\dLMNP-V]|[26NS][0-8LMNP-U])|[DHPS][37PT][0L]|[ACELMRT][37PT][01LM]|[AC-EHLMPR-T][26NS][9V])|(?:[02468LNQSU][048LQU]|[13579MPRTV][26NS])B[26NS][9V])(?:[A-MZ][1-9MNP-V][\\dLMNP-V]{2}|[A-M][0L](?:[1-9MNP-V][\\dLMNP-V]|[0L][1-9MNP-V]))[A-Z]$";
+    public static final String FISCALCODE_REGEX = "^(?:[A-Z][AEIOU][AEIOUX]|[AEIOU]X{2}|[B-DF-HJ-NP-TV-Z]{2}[A-Z]){2}(?:[\\dLMNP-V]{2}(?:[A-EHLMPR-T](?:[04LQ][1-9MNP-V]|[15MR][\\dLMNP-V]|[26NS][0-8LMNP-U])|[DHPS][37PT][0L]|[ACELMRT][37PT][01LM]|[AC-EHLMPR-T][26NS][9V])|(?:[02468LNQSU][048LQU]|[13579MPRTV][26NS])B[26NS][9V])(?:[A-MZ][1-9MNP-V][\\dLMNP-V]{2}|[A-M][0L](?:[1-9MNP-V][\\dLMNP-V]|[0L][1-9MNP-V]))[A-Z]$";
 
-    protected static final String FEMALE_CHAR = "F";
+    public static final String FEMALE_CHAR = "F";
 
-    protected static final String MALE_CHAR = "M";
+    public static final String MALE_CHAR = "M";
 
-    protected static final Map<String, String> HOMOCODICIAN_MAP = new HashMap<String, String>() {
+    public static final Map<String, String> HOMOCODICIAN_MAP = new HashMap<String, String>() {
         {
             put("L", "0");
             put("M", "1");
@@ -30,9 +30,9 @@ public class Constants {
         }
     };
 
-    protected static final int[] HOMOCODICIAN_POS_ARRAY = { 6, 7, 9, 10, 12, 13, 14 };
+    public static final int[] HOMOCODICIAN_POS_ARRAY = { 6, 7, 9, 10, 12, 13, 14 };
 
-    protected static final Map<String, Integer> ODDS_CHAR_MAP = new HashMap<String, Integer>() {
+    public static final Map<String, Integer> ODDS_CHAR_MAP = new HashMap<String, Integer>() {
         {
             put("0", 0);
             put("1", 1);
@@ -73,7 +73,7 @@ public class Constants {
         }
     };
 
-    protected static final Map<String, Integer> EVEN_CHAR_MAP = new HashMap<String, Integer>() {
+    public static final Map<String, Integer> EVEN_CHAR_MAP = new HashMap<String, Integer>() {
         {
             put("0", 1);
             put("1", 0);
@@ -114,10 +114,10 @@ public class Constants {
         }
     };
 
-    protected static final String[] CONTROL_CHAR_ARRAY = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
+    public static final String[] CONTROL_CHAR_ARRAY = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
             "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
 
-    protected static final Map<String, String> MONTHS_CHAR_MAP = new HashMap<String, String>() {
+    public static final Map<String, String> MONTHS_CHAR_MAP = new HashMap<String, String>() {
         {
             put("A", "01");
             put("B", "02");
@@ -134,14 +134,14 @@ public class Constants {
         }
     };
 
-    protected static final String[] ERROR_LIST_MESSAGE = {
-            "Codice da analizzare assente",
-            "Lunghezza codice da analizzare non corretta",
-            "Il codice da analizzare contiene caratteri non corretti",
-            "Carattere non valido in decodifica omocodia",
-            "Codice fiscale non corretto"
+    public static final String[] ERROR_LIST_MESSAGE = {
+            "Code to be analyzed not found",
+            "Length of code to be analyzed is not correct",
+            "Code to be analyzed contains invalid characters",
+            "Character not valid in decoding homocodian",
+            "Fiscal code is not correct"
     };
 
-    protected static final String VALID_MESSAGE = "Codice fiscale valido";
+    public static final String VALID_MESSAGE = "Fiscal code is valid";
 
 }
