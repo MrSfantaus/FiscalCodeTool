@@ -43,6 +43,3 @@ tmp/
 
 # Ignora gitkeep
 .gitkeep
-
-# Ignora node_modules dello Swagger
-/backend/swagger/node_modules
