@@ -31,7 +31,7 @@ To run FiscalCodeTool locally, follow these steps:
 7. Access the Application: Open your web browser and go to http://localhost:4200
 
 ## Contributors
-Simone Mattei @MrSfantaus
+Simone Mattei [@MrSfantaus](https://github.com/MrSfantaus)
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
