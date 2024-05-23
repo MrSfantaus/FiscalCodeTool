@@ -59,7 +59,7 @@ public class FiscalCodeValidator {
                 }
             }
             setValid(true);
-        } catch (Exception e) {
+        } catch (FiscalCodeException e) {
             setError(e.getMessage());
             setValid(false);
         }

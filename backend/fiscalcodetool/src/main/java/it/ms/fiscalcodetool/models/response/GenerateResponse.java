@@ -9,9 +9,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Schema(description = "Generate response", example = "{'message': 'OK', 'success': true, 'data':{'fiscalCode': 'FSCLCD37T07H501J', 'homocodesFiscalCode': ['FSCLCD37T07H5L1J', 'FSCLCD37T07H50MJ']}}")
 public class GenerateResponse implements JsonDTO {
 
     private String fiscalCode;

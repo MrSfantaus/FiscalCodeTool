@@ -40,7 +40,7 @@ public class FiscalCodeGenerator {
 
 			setFiscalCode(cf.toString().toUpperCase());
 			return true;
-		} catch (Exception e) {
+		} catch (FiscalCodeException e) {
 			setError(e.getMessage());
 			return false;
 		}

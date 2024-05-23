@@ -10,9 +10,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Schema(description = "Response object containing a list of Belfiore codes.", example = "{'message': 'OK', 'success': true, 'data':{'belfioreCodes': [{'isItalianMunicipality': true, 'province': 'PD', 'municipality': 'ABANO TERME', 'belfioreCode': 'A001'},{'isItalianMunicipality': true, 'province': 'RM', 'municipality': 'ROMA', 'belfioreCode': 'H501'}]}}")
 public class BelfioreResponse implements JsonDTO {
 
     private List<BelfioreDTO> belfioreCodes;
