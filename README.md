@@ -11,7 +11,7 @@ Homographic cases, also known as "omocodia" in Italian, refer to situations wher
  - Fiscal Code Generation: Generate valid fiscal codes based on user-provided personal information.
  - Fiscal Code Validation: Validate existing fiscal codes to ensure correctness.
  - Homographic Case Handling: Detect and handle homographic cases to prevent duplication of fiscal codes.
- - User-Friendly Interface: Intuitive web interface built with Angular for easy interaction.
+ - User-Friendly Interface: Intuitive web interface built with Angular for easy interaction and SwaggerUI for testing APIs.
 
 ## Technologies Used
  - Backend: Java Spring Boot framework for robust and scalable server-side development.
@@ -25,10 +25,11 @@ To run FiscalCodeTool locally, follow these steps:
 1. Clone the Repository: `git clone https://github.com/MrSfantaus/FiscalCodeTool.git`
 2. Navigate to Backend Directory: `cd FiscalCodeTool/backend`
 3. Run Backend Server: `docker-compose up --build`
-4. Navigate to Frontend Directory: `cd ../frontend`
-5. Install Dependencies: npm install
-6. Run Frontend Server: ng serve
-7. Access the Application: Open your web browser and go to http://localhost:4200
+4. If you want test the APIs open your web browser and go to [Swagger-UI](http://localhost:8080/swagger-ui/index.html)
+5. Navigate to Frontend Directory: `cd ../frontend`
+6. Install Dependencies: npm install
+7. Run Frontend Server: ng serve
+8. Access the Application: Open your web browser and go to http://localhost:4200
 
 ## Contributors
 Simone Mattei [@MrSfantaus](https://github.com/MrSfantaus)
