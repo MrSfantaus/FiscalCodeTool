@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>Validate Fiscal Code</h1>
+  <br>
+  <form [formGroup]="validateForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="fiscalCode">Fiscal Code</label>
+      <input type="text" id="fiscalCode" formControlName="fiscalCode" class="form-control" maxlength="16" placeholder="FSCLCD30T00L000S">
+      <div *ngIf="validateForm.get('fiscalCode')?.invalid && validateForm.get('fiscalCode')?.touched" class="text-danger">
+        Fiscal code is required
+      </div>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary" [disabled]="validateForm.invalid">Validate</button>
+  </form>
+  <div class="div">
+    <br>
+    <h2>Validation Result</h2>
+    <br>
+    <div *ngIf="response?.success" class="text-success">
+      <div>
+        <strong>Description:</strong> {{ response?.data?.description }}
+      </div>
+      <div>
+        <strong>Homocodian Fiscal Codes:</strong> {{ response?.data?.homocodedFiscalCode ? 'Yes' : 'No' }}
+      </div>
+    </div>    
+    <div *ngIf="!response?.success" class="text-danger">
+      <strong>{{ response?.data?.description }}</strong>
+    </div>
+  </div>
+</div>  

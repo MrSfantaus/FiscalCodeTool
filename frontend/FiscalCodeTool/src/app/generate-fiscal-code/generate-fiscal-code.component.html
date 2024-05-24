@@ -1,0 +1,54 @@
+<div [formGroup]="generateForm">
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" formControlName="name">
+  
+    <label for="surname">Surname:</label>
+    <input type="text" id="surname" formControlName="surname">
+  
+    <label for="birthDate">Birth Date:</label>
+    <input type="date" id="birthDate" formControlName="birthDate">
+  
+    <label for="isItalian">Is Italian:</label>
+    <input type="checkbox" id="isItalian" formControlName="isItalian" (change)="onIsItalianChange()">
+  
+    <label for="province">Province:</label>
+    <select id="province" formControlName="province" (change)="onProvinceChange()">
+        <option *ngFor="let province of provinceCodes" [value]="province">{{ province }}</option>
+    </select>
+  
+    <label for="municipality">Municipality:</label>
+    <select id="municipality" formControlName="municipality">
+      <option *ngFor="let municipality of municipalityCodes" [value]="municipality">{{ municipality }}</option>
+    </select>
+  
+    <label for="gender">Gender:</label>
+    <select id="gender" formControlName="gender">
+      <option value="M">Male</option>
+      <option value="F">Female</option>
+    </select>
+  
+    <button type="button" (click)="onSubmit()">Generate Fiscal Code</button>
+    <button type="button" (click)="onReset()">Reset</button>
+  
+    <div class="div">
+        <div *ngIf="responseGenerate?.success">
+          <h3>Response</h3>
+          <div>
+            <strong>Fiscal Code:</strong> {{ responseGenerate?.data?.fiscalCode }}
+          </div>
+          <div>
+            <strong>Homocodian Fiscal Codes:</strong>
+            <ul>
+              <li *ngFor="let code of responseGenerate?.data?.homocodesFiscalCode">{{ code }}</li>
+            </ul>
+          </div>
+        </div>
+      
+        <div *ngIf="!responseGenerate?.success">
+          <h3>{{ responseGenerate?.message }}</h3>
+        </div>
+      </div>
+  
+  </div>
+  

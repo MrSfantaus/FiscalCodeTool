@@ -17,11 +17,10 @@ import it.ms.fiscalcodetool.models.request.ValidateRequest;
 import it.ms.fiscalcodetool.models.response.Response;
 import it.ms.fiscalcodetool.services.BelfioreService;
 import it.ms.fiscalcodetool.services.FiscalCodeService;
-
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping(path = "/")
+@RequestMapping(path = "/api")
 @Slf4j
 @Tag(name = "Fiscal Code API", description = "Operations related to Italian Fiscal Codes")
 public class FiscalCodeController {
