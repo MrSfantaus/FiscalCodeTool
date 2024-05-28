@@ -17,19 +17,19 @@ public class GenerateRequest {
     @Schema(description = "surname", example = "Rossi")
     private String surname;
 
-    @Schema(description = "birth date", example = "2000-01-01")
+    @Schema(description = "birthDate", example = "01/12/2000")
     private String birthDate;
 
     @Schema(description = "gender", example = "M")
     private String gender;
 
-    @Schema(description = "italy", example = "true")
-    private boolean italy;
+    @Schema(description = "isItalian", example = "true")
+    private boolean isItalian;
 
     @Schema(description = "province", example = "MI")
     private String province;
     
     @Schema(description = "municipality", example = "MILANO")
-    private String municipal;
+    private String municipality;
     
 }

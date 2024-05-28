@@ -35,7 +35,7 @@ public class FiscalCodeGenerator {
 			cf.append(evaluateYear(request.getBirthDate()));
 			cf.append(evaluateMonth(request.getBirthDate()));
 			cf.append(evaluateDay(request.getBirthDate(), request.getGender()));
-			cf.append(evaluateMunicipalityCode(request.getProvince(), request.getMunicipal()));
+			cf.append(evaluateMunicipalityCode(request.getProvince(), request.getMunicipality()));
 			cf.append(evaluateControlCode(cf.toString()));
 
 			setFiscalCode(cf.toString().toUpperCase());
