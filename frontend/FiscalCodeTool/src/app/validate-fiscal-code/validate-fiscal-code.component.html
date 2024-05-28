@@ -3,16 +3,18 @@
   <br>
   <form [formGroup]="validateForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="fiscalCode">Fiscal Code</label>
-      <input type="text" id="fiscalCode" formControlName="fiscalCode" class="form-control" maxlength="16" placeholder="FSCLCD30T00L000S">
-      <div *ngIf="validateForm.get('fiscalCode')?.invalid && validateForm.get('fiscalCode')?.touched" class="text-danger">
-        Fiscal code is required
-      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>Fiscal Code</mat-label>
+        <input matInput type="text" id="fiscalCode" formControlName="fiscalCode" maxlength="16" placeholder="FSCLCD30T00L000S">
+        <mat-error *ngIf="validateForm.get('fiscalCode')?.invalid && validateForm.get('fiscalCode')?.touched">
+          Fiscal code is required
+        </mat-error>
+      </mat-form-field>
     </div>
     <br>
-    <button type="submit" class="btn btn-primary" [disabled]="validateForm.invalid">Validate</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="validateForm.invalid">Validate</button>
   </form>
-  <div class="div">
+  <div class="div" *ngIf="response != null">
     <br>
     <h2>Validation Result</h2>
     <br>
@@ -28,4 +30,4 @@
       <strong>{{ response?.data?.description }}</strong>
     </div>
   </div>
-</div>  
+</div>

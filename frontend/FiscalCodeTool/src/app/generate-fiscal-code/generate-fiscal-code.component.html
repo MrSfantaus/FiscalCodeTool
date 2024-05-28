@@ -1,54 +1,108 @@
-<div [formGroup]="generateForm">
+<div class="container">
+  <h1>Generate Fiscal Code</h1>
+  
+  <mat-divider></mat-divider>
 
-    <label for="name">Name:</label>
-    <input type="text" id="name" formControlName="name">
-  
-    <label for="surname">Surname:</label>
-    <input type="text" id="surname" formControlName="surname">
-  
-    <label for="birthDate">Birth Date:</label>
-    <input type="date" id="birthDate" formControlName="birthDate">
-  
-    <label for="isItalian">Is Italian:</label>
-    <input type="checkbox" id="isItalian" formControlName="isItalian" (change)="onIsItalianChange()">
-  
-    <label for="province">Province:</label>
-    <select id="province" formControlName="province" (change)="onProvinceChange()">
-        <option *ngFor="let province of provinceCodes" [value]="province">{{ province }}</option>
-    </select>
-  
-    <label for="municipality">Municipality:</label>
-    <select id="municipality" formControlName="municipality">
-      <option *ngFor="let municipality of municipalityCodes" [value]="municipality">{{ municipality }}</option>
-    </select>
-  
-    <label for="gender">Gender:</label>
-    <select id="gender" formControlName="gender">
-      <option value="M">Male</option>
-      <option value="F">Female</option>
-    </select>
-  
-    <button type="button" (click)="onSubmit()">Generate Fiscal Code</button>
-    <button type="button" (click)="onReset()">Reset</button>
-  
-    <div class="div">
-        <div *ngIf="responseGenerate?.success">
-          <h3>Response</h3>
-          <div>
-            <strong>Fiscal Code:</strong> {{ responseGenerate?.data?.fiscalCode }}
-          </div>
-          <div>
-            <strong>Homocodian Fiscal Codes:</strong>
-            <ul>
-              <li *ngFor="let code of responseGenerate?.data?.homocodesFiscalCode">{{ code }}</li>
-            </ul>
-          </div>
-        </div>
-      
-        <div *ngIf="!responseGenerate?.success">
-          <h3>{{ responseGenerate?.message }}</h3>
-        </div>
+  <form [formGroup]="generateForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" placeholder="Name">
+      <mat-error *ngIf="generateForm.get('name')?.invalid && generateForm.get('name')?.touched">
+        Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Surname</mat-label>
+      <input matInput formControlName="surname" placeholder="Surname">
+      <mat-error *ngIf="generateForm.get('surname')?.invalid && generateForm.get('surname')?.touched">
+        Surname is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-divider></mat-divider>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Gender</mat-label>
+      <mat-select formControlName="gender">
+        <mat-option value="M">Male</mat-option>
+        <mat-option value="F">Female</mat-option>
+      </mat-select>
+      <mat-error *ngIf="generateForm.get('gender')?.invalid && generateForm.get('gender')?.touched">
+        Gender is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Birth Date</mat-label>
+      <input matInput formControlName="birthDate" placeholder="DD/MM/YYYY" (input)="onDateInput($event)">
+      <mat-error *ngIf="generateForm.get('birthDate')?.invalid && generateForm.get('birthDate')?.touched">
+        Birth Date is required and must be in DD/MM/YYYY format
+      </mat-error>
+    </mat-form-field>
+
+    <mat-divider></mat-divider>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Is Italian Citizen</mat-label>
+      <mat-select formControlName="isItalian" (ngModelChange)="onIsItalianChange()">
+        <mat-option value="true">Yes</mat-option>
+        <mat-option value="false">No</mat-option>
+      </mat-select>
+      <mat-error *ngIf="generateForm.get('isItalian')?.invalid && generateForm.get('isItalian')?.touched">
+        Is Italian Citizen is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Province</mat-label>
+      <input type="text" matInput formControlName="province" [matAutocomplete]="autoProvince">
+      <mat-autocomplete #autoProvince="matAutocomplete" (optionSelected)="onProvinceChange()">>
+        <mat-option *ngFor="let province of filteredProvinces | async" [value]="province">
+          {{ province }}
+        </mat-option>
+      </mat-autocomplete>
+      <mat-error *ngIf="generateForm.get('province')?.invalid && generateForm.get('province')?.touched">
+        Province is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Municipality</mat-label>
+      <input type="text" matInput formControlName="municipality" [matAutocomplete]="autoMunicipality">
+      <mat-autocomplete #autoMunicipality="matAutocomplete">
+        <mat-option *ngFor="let municipality of filteredMunicipalities | async" [value]="municipality">
+          {{ municipality }}
+        </mat-option>
+      </mat-autocomplete>
+      <mat-error *ngIf="generateForm.get('municipality')?.invalid && generateForm.get('municipality')?.touched">
+        Municipality is required
+      </mat-error>
+    </mat-form-field>    
+
+    <div class="button-container">
+      <button type="submit" class="btn btn-primary" [disabled]="generateForm.invalid" style="margin-right:20px">Generate</button>
+      <button type="button" class="btn btn-primary" (click)="onReset()">Reset</button>
+    </div>
+
+  </form>
+  <div class="div" *ngIf="responseGenerate != null">
+    <br>
+    <h2>Generation Result</h2>
+    <br>
+    <div *ngIf="responseGenerate?.success" class="text-success">
+      <div>
+        <strong>Fiscal Code:</strong> {{ responseGenerate?.data?.fiscalCode }}
       </div>
-  
+      <div>
+        <strong>Homocodian Fiscal Codes:</strong>
+        <ul>
+          <li *ngFor="let code of responseGenerate?.data?.homocodesFiscalCode">{{ code }}</li>
+        </ul>
+      </div>
+    </div>    
+    <div *ngIf="!responseGenerate?.success" class="text-danger">
+      <strong>{{ responseGenerate?.message }}</strong>
+    </div>
   </div>
-  
+</div>

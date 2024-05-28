@@ -11,7 +11,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  public generateFiscalCode(requestBody: any): Observable<GenerateResponse> {
+  public generateFiscalCode(requestBody: any): Observable<GenerateResponse> {  
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<GenerateResponse>(`${this.baseUrl}/generate`, requestBody, { headers: headers });
   }
@@ -27,13 +27,11 @@ export class ApiService {
   }
 
   getAllBelfioreCodesByIsItalianMunicipality(isItalian: boolean): Observable<BelfioreResponse> {
-    console.log(isItalian);
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<BelfioreResponse>(`${this.baseUrl}/getBelfioreCodesByIsItalianMunicipality`, { italianMunicipality: isItalian }, { headers: headers });
   }
 
   getAllBelfioreCodesByProvince(province: string): Observable<BelfioreResponse> {
-    console.log(province);
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<BelfioreResponse>(`${this.baseUrl}/getBelfioreCodesByProvince`, { province: province }, { headers: headers });
   }
