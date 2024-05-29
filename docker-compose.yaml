@@ -12,9 +12,9 @@ services:
       - "5432:5432"
     healthcheck:
       test: ["CMD", "pg_isready", "-q", "-d", "FiscalCodeTool", "-U", "service_user"]
-      interval: 30s
-      retries: 5
-      start_period: 120s
+      interval: 10s 
+      retries: 3    
+      start_period: 60s 
       timeout: 5s
 
   backend:
@@ -32,10 +32,10 @@ services:
       SPRING_DATASOURCE_PASSWORD: service
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://localhost:8080/swagger-ui/index.html || exit 1"]
-      interval: 30s
-      retries: 5
-      start_period: 60s
-      timeout: 10s
+      interval: 10s 
+      retries: 3
+      start_period: 30s 
+      timeout: 5s   
 
   frontend:
     build:
@@ -47,4 +47,3 @@ services:
     ports:
       - "4200:4200"
     command: ["npm", "start", "--", "--proxy-config", "proxy.conf.json"]
-    
