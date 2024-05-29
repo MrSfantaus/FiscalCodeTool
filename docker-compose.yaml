@@ -3,7 +3,7 @@ version: '3.8'
 services:
   db:
     build:
-      context: ./fiscalcodetool_DB
+      context: ./backend/fiscalcodetool_DB
     container_name: fiscalcodetool-db
     environment:
       POSTGRES_PASSWORD: admin
@@ -17,9 +17,9 @@ services:
       start_period: 120s
       timeout: 5s
 
-  app:
+  backend:
     build:
-      context: ./fiscalcodetool
+      context: ./backend/fiscalcodetool
     container_name: fiscalcodetool-app
     depends_on:
       db:
@@ -30,3 +30,21 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/FiscalCodeTool
       SPRING_DATASOURCE_USERNAME: service_user
       SPRING_DATASOURCE_PASSWORD: service
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080/swagger-ui/index.html || exit 1"]
+      interval: 30s
+      retries: 5
+      start_period: 60s
+      timeout: 10s
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: fiscalcodetool-frontend
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "4200:4200"
+    command: ["npm", "start", "--", "--proxy-config", "proxy.conf.json"]
+    
