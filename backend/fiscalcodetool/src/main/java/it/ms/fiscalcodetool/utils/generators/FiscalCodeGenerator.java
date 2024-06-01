@@ -141,11 +141,11 @@ public class FiscalCodeGenerator {
 			newString.append(vowels);
 			newString = addX(newString);
 		} else if (consonants.length() > 3) {
-			if (!cod) {
-				newString = new StringBuilder(consonants.substring(3));
-			} else {
-				newString = new StringBuilder(consonants.substring(1, 3));
+			consonants = removeConsecutiveDuplicates(consonants);
+			if (consonants.length() < 3) {
+				newString = new StringBuilder(addVowels(consonants, vowels));
 			}
+			newString = new StringBuilder(consonants.substring(0, 3));
 		}
 		return newString.toString().toUpperCase();
 	}
@@ -209,4 +209,24 @@ public class FiscalCodeGenerator {
 		error = null;
 	}
 
+	public static StringBuilder removeConsecutiveDuplicates(StringBuilder sb) {
+		StringBuilder result = new StringBuilder();
+		
+		if (sb.length() == 0) {
+			return result;
+		}
+	
+		char prevChar = sb.charAt(0);
+		result.append(prevChar);
+	
+		for (int i = 1; i < sb.length(); i++) {
+			char currentChar = sb.charAt(i);
+			if (currentChar != prevChar) {
+				result.append(currentChar);
+				prevChar = currentChar;
+			}
+		}	
+		return result;
+	}
+	
 }
