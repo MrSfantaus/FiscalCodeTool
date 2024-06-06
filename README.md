@@ -42,3 +42,15 @@ Simone Mattei [@MrSfantaus](https://github.com/MrSfantaus)
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+# Issues
+
+If you encounter any bugs or have suggestions for improvements, please open an issue. Your feedback is invaluable and helps us to improve the project by fixing issues and implementing new features.
+
+To open an issue, please follow these steps:
+1. Go to the [Issues](https://github.com/MrSfantaus/FiscalCodeTool/issues) page of this repository.
+2. Click on the "***New issue***" button.
+3. Provide a clear and detailed description of the bug or feature request.
+4. If possible, include steps to reproduce the bug or relevant context for the feature.
+
+**Thank you for your contributions!**
